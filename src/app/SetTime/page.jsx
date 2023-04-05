@@ -37,7 +37,7 @@ export default function Time() {
           <option value="4">4 horas</option>
           <option value="5">5 horas</option>
         </select>
-        <ButtonBack texto='Continuar' onClick={()=> {router.push('/StudyPanel');}} />
+        <ButtonBack texto='Continuar' onClick={()=> {router.push('/PersonalTime');}} />
       </section>
     </>
   );
