@@ -2,7 +2,10 @@
 import ButtonBack from "../components/buttonBack";
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { setLastInterface, setSessionTime } from "../features/answers/answersSlice";
+import PTime from "../PersonalTime/page";
+import styled from "styled-components";
 
 export default function Time() {
       
@@ -22,6 +25,8 @@ export default function Time() {
     dispatch(setLastInterface('/SetTime'));
   }
 
+  const [estadoM , cambiarE] = useState(false);
+
   return (
     <>
       <div className="flex justify-start mt-10 ml-8">
@@ -37,8 +42,60 @@ export default function Time() {
           <option value="4">4 horas</option>
           <option value="5">5 horas</option>
         </select>
-        <ButtonBack texto='Continuar' onClick={()=> {router.push('/PersonalTime');}} />
+        <ButtonBack texto='Continuar' onClick={()=> {cambiarE(!estadoM);}} />
       </section>
+      <PTime estado={estadoM}
+             cambioEstado={cambiarE}>
+           <Enca> 
+           <div>
+            <h1> Tiempo de estudio(min)  </h1>
+            <input type="text" placeholder= '25'></input>
+            
+           </div>
+           <div>
+            <h1> Tiempo de estudio(min)  </h1>
+            <input type="text" placeholder= '25' ></input>
+           </div>
+           <div>
+            <h1> Tiempo de estudio  </h1>
+            <input type="text" placeholder= '25'></input>
+           </div>
+           <div>
+            <h1> Tiempo de estudio  </h1>
+            <input type="text" placeholder= '25'></input>
+            
+           </div>
+            
+          </Enca>
+           
+        
+
+       </PTime>
     </>
   );
 }
+const Enca = styled.div`
+        display: table;
+        
+        div
+        {
+          display: table-row
+        }
+
+        input
+        {
+          border: 1px solid #00b;
+          display: table-cell ;
+          width: 25%;
+          padding: 1px 10px;
+          margin: 0 0 5px 0;
+
+        }
+
+        h1
+        {
+          padding: 1px 10px;
+          display: table-cell;
+        }
+       
+    `;

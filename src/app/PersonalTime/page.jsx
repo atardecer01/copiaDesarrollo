@@ -1,35 +1,29 @@
 'use client';
 import ButtonBack from "../components/buttonBack";
-import { useRouter } from 'next/navigation';
-import { useDispatch, useSelector } from "react-redux";
-import { setLastInterface, setSessionTime } from "../features/answers/answersSlice";
-import { FormGroup, Label, Modal, ModalBody, ModalHeader } from "reactstrap";
-import Button from "../components/button";
-import { createStyleRegistry } from "styled-jsx";
 import styled from "styled-components";
 
-export default function PTime() {
+export default function PTime({children,estado,cambioEstado}) {
       
-    
+    //ponerle de fondo la pestaña anterior de seleccionar tiempo
   return (
     <>
-    
+    {estado && 
         <Overlay>
             <Contenedor>
                     <Encabezado>
-                        <h3>Los tiempos asignados son</h3>
+                        <h6>Los tiempos asignados son</h6>
                     </Encabezado>
                     <B>Cancelar</B>
-                    <h1> Tiempo de estudio</h1>
-                    <input type="text"></input>
-                    <h1> Tiempos de descanso</h1>
-                    <input type="text"></input>
-                    <h1> Intervalos de descanso</h1>
-                    <input type="text"></input>
-                    <ButtonBack texto={'Continuar'} />
+                    <Enca>
+                       {children} 
+                    </Enca>
+                        
+                    
+                    
+                    <ButtonBack texto={'Continuar'} onClick={()=> cambioEstado(false)}/>
             </Contenedor>
         </Overlay>
-    
+    }
     </>
   );
 }
@@ -54,7 +48,7 @@ export default function PTime() {
         width: 500px;
         min-height: 300px;
         background: #fff;
-        position: relative;
+        position: relative;        
         border-radius: 5px;
         box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px;
         padding:20px;
@@ -68,7 +62,11 @@ export default function PTime() {
         justify-content: space-between;
         margin-bottom: 20px;
         padding-bottom:20px;
-        border-bottom: 1px solid #E8E8E8
+        border-bottom: 1px solid #E8E8E8;
+        
+        font-weight:bold;
+        font-size:20px;
+        font-family:Helvetica,Futura,Arial,Verdana,sans-serif;
         
        
     `;
@@ -95,3 +93,15 @@ export default function PTime() {
     
    
 `;
+
+
+const Enca = styled.div`
+       display: flex;
+        align-items: center;
+        justify-content: center;
+        align: center;
+        width: 600px;
+        height: 200px;
+        
+       
+    `;
