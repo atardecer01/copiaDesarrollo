@@ -20,7 +20,12 @@ export default function PTime({children,estado,cambioEstado}) {
                         
                     
                     
-                    <ButtonBack texto={'Continuar'} onClick={()=> cambioEstado(false)}/>
+                    <ButtonBack
+          texto="Continuar"
+          onClick={() => {
+            router.push("/StudyPanel");
+          }}
+        />
             </Contenedor>
         </Overlay>
     }
