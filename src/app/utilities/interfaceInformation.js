@@ -1,3 +1,6 @@
+
+
+
 export const INFORMATION = [
     { //0
         title: "¿Qué quieres hacer?",

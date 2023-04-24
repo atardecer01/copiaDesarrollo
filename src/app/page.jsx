@@ -8,6 +8,8 @@ import { useRouter } from 'next/navigation';
 import { useSelector, useDispatch } from "react-redux";
 import { setLastInterface, setSessionTime, setCurrentInfoPrincipalPage, setTimeSystem } from "./features/answers/answersSlice.js";
 
+
+
 export default function Home() {
 
   const dispatch = useDispatch();
