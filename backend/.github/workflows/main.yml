@@ -3,7 +3,7 @@ name: Test Node.js App
 on:
   push:
     branches:
-      - develop
+      - HU-17
 
 jobs:
   test:
@@ -22,6 +22,3 @@ jobs:
 
     - name: Run tests
       run: npm test
-
-    - name: image docker
-      run: docker build -t backendImages .
