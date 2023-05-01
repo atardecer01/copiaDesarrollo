@@ -27,7 +27,7 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions))
-
+//comentar cambios
 app.use("/api/usuarios", usuarioRoutes);
 
 const PORT = process.env.PORT || 4000
