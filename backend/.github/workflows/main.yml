@@ -3,7 +3,7 @@ name: Test Node.js App
 on:
   push:
     branches:
-      - develop
+      - pp
 
 jobs:
   test:
