@@ -4,6 +4,7 @@ import Timer from "../components/timer";
 import { useSelector } from "react-redux";
 import Button from "../components/button";
 import { useRouter } from "next/navigation";
+import React from "react";
 
 export default function StudyPanel(){
 
