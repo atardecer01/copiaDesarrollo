@@ -12,7 +12,7 @@ export default function LoginPage() {
             Lawatty
           </h2>
         </div>
-        <form className="mt-8 space-y-6">
+        <form className="mt-8 space-y-6" data-testid="login-form">
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <input
@@ -59,7 +59,7 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-text-button shadow-sm shadow-purple-text">
+            <button data-testid="login-button" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-text-button shadow-sm shadow-purple-text">
               Iniciar sesión
             </button>
           </div>
