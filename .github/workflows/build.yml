@@ -16,8 +16,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Test and Coverage
-        working-directory: frontend  # Especifica la carpeta frontend como directorio de trabajo
-        run: yarn jest --coverage    # Ejecuta las pruebas en la carpeta frontend
+        run: yarn --cwd frontend jest --coverage
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
