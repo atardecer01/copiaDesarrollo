@@ -1,24 +1,25 @@
-name: Build
+name: Build and Test
+
 on:
- push:
-   branches:
-     - HU-22
- pull_request:
-   types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - HU-22
+  pull_request:
+    types: [opened, synchronize, reopened]
+
 jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 
       - name: Install dependencies
         run: yarn
-      - name: Test and coverage
-        run: yarn jest --coverage
+      - name: Test and Coverage
+        working-directory: frontend  # Especifica la carpeta frontend como directorio de trabajo
+        run: yarn jest --coverage    # Ejecuta las pruebas en la carpeta frontend
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets. SONARCLOUD_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
