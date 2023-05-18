@@ -13,10 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependencies
+      - name: Install dependencies in frontend
+        working-directory: ./frontend
+        run: yarn
+      - name: Install dependencies in root
+        working-directory: ./
         run: yarn
       - name: Test and Coverage
-        run: yarn --cwd ./frontend jest --coverage
+        working-directory: ./frontend
+        run: yarn jest --coverage
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
