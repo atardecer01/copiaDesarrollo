@@ -23,7 +23,6 @@ jobs:
         working-directory: ./frontend
         run: yarn jest --coverage
       - name: SonarCloud Scan
-        working-directory: ./frontend
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
