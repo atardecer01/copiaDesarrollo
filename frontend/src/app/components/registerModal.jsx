@@ -25,47 +25,45 @@ export default function Modal() {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (form.nombre === '' || form.email === '' || form.password === '' || form.confirmPassword === '') {
-            setErrorMessage("Por favor llene todos los campos");
-            return;
+          setErrorMessage("Por favor llene todos los campos");
+          return;
         }
         if (form.password !== form.confirmPassword) {
-            setErrorMessage("Las contraseñas no coinciden");
-            return;
+          setErrorMessage("Las contraseñas no coinciden");
+          return;
         }
-
+      
         setErrorMessage("");
-        // Aquí se envia el formulario al servidor
-
+      
         const nombre = form.nombre;
         const email = form.email;
         const password = form.password;
-
-        try {
-            const url = "http://localhost:4000/api/usuarios"
-            const respuesta = await axios.post(url, { nombre, password, email });
-            swal({
-                title: "Registro exitoso",
-                icon: "success"
-            })
+      
+        axios.post("http://localhost:4000/api/usuarios", { nombre, password, email })
+          .then(async () => {
+            await swal({
+              title: "Registro exitoso",
+              icon: "success"
+            });
             setShowModal(false);
             setForm({
-                nombre: '',
-                email: '',
-                password: '',
-                confirmPassword: ''
+              nombre: '',
+              email: '',
+              password: '',
+              confirmPassword: ''
             });
-        } catch (error) {
-            swal({
-                title: error.response.data.msg,
-                icon: "warning",
-                button: "Aceptar"
-            })
-        }
-    };
-
+          })
+          .catch(async (error) => {
+            await swal({
+              title: error.response.data.msg,
+              icon: "warning",
+              button: "Aceptar"
+            });
+          });
+      };
     return (
         <>
             {/*<ButtonBack texto='abrir' onClick={() => { setShowModal(true) }} />*/}
@@ -88,8 +86,8 @@ export default function Modal() {
                                 <section className="bg-gray-50">
                                     <div className="flex flex-col items-center justify-center px-6 ">
                                         <div className="w-full bg-white xl:p-0">
-                                            <div className="flex justify-end mt-4">
-                                                <ExitButton onClick={() => setShowModal(false)} />
+                                            <div className="flex justify-end mt-4"> 
+                                                <ExitButton  onClick={() => setShowModal(false)} />
                                             </div>
                                             <div className="pl-6 pr-6 pb-6 space-y-4 ">
                                                 <h1 className="text-xl font-bold leading-tight tracking-tight text-black text-center">
