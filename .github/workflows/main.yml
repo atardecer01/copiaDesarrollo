@@ -23,6 +23,9 @@ jobs:
     - name: Run tests
       run: npm test
 
+    - name: Isntall jest
+      run: npm install --save-dev jest-environment-jsdom
+
     - name: Sonar
       run: npm sonar
 
