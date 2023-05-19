@@ -29,8 +29,7 @@ jobs:
     - name: Sonar
       run: |
         cd frontend    # Cambia al directorio "frontend"
-        npm install 
-        npm sonar
+        npm run sonar
     
 
 
