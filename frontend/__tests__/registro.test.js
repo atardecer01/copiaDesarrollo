@@ -19,7 +19,27 @@ jest.mock("axios");
 
 describe("Modal component", () => {
 
+  test('se cierra el modal al hacer clic en el botón de salida', () => {
+    render(<Modal />);
+    fireEvent.click(screen.getByText('Registrate'));
+    fireEvent.click(screen.getByTestId('exit-button'));
+    expect(screen.queryByTestId('modal')).toBeNull();
+  });
 
+  test('El mensaje de error se actualiza correctamente', () => {
+    render(<Modal />);
+    fireEvent.click(screen.getByText('Registrate'));
+
+    fireEvent.submit(screen.getByTestId('registration-form'));
+    expect(screen.getByText('Por favor llene todos los campos')).toBeInTheDocument();
+
+    fireEvent.change(screen.getByLabelText('Nombre'), { target: { value: 'John Doe' } });
+    fireEvent.change(screen.getByLabelText('Correo electrónico'), { target: { value: 'john@example.com' } });
+    fireEvent.change(screen.getByLabelText('Contraseña'), { target: { value: 'password123' } });
+    fireEvent.change(screen.getByLabelText('Confirmar Contraseña'), { target: { value: 'different' } });
+    fireEvent.submit(screen.getByTestId('registration-form'));
+    expect(screen.getByText('Las contraseñas no coinciden')).toBeInTheDocument();
+  });
 
   test('se abre el modal al hacer clic en "Registrate"', () => {
     render(<Modal />);
