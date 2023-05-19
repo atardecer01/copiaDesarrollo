@@ -44,7 +44,7 @@ export default function Modal() {
         const password = form.password;
       
         axios.post("http://localhost:4000/api/usuarios", { nombre, password, email })
-          .then(async (respuesta) => {
+          .then(async () => {
             await swal({
               title: "Registro exitoso",
               icon: "success"
