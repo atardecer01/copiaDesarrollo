@@ -24,12 +24,14 @@ jobs:
         run: yarn jest --coverage
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
-        args: >
-          -Dsonar.organization=desarrollo-lawatty
-          -Dsonar.projectKey=David-A-Moreno_desarrollo-lawatty
-          -Dsonar.sources=./frontend/src
-          -Dsonar.test.exclusions=./frontend/src/app/page.jsx
-          -Dsonar.tests=./frontend/__tests__
+        with: 
+          projectBaseDir: frontend
+          args: >
+            -Dsonar.organization=desarrollo-lawatty
+            -Dsonar.projectKey=David-A-Moreno_desarrollo-lawatty
+            -Dsonar.sources=./frontend/src
+            -Dsonar.test.exclusions=./frontend/src/app/page.jsx
+            -Dsonar.tests=./frontend/__tests__
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
