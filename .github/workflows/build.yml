@@ -36,7 +36,10 @@ jobs:
       with:
         host: ${{ secrets.SONARQUBE_HOST }}
         login: ${{ secrets.SONARQUBE_TOKEN }}
-        options: -X
+        run: |
+          cd frontend    # Cambia al directorio "frontend"
+          npm install 
+          npm sonar
     
 
 
