@@ -88,8 +88,8 @@ export default function Modal() {
                                 <section className="bg-gray-50">
                                     <div className="flex flex-col items-center justify-center px-6 ">
                                         <div className="w-full bg-white xl:p-0">
-                                            <div className="flex justify-end mt-4">
-                                                <ExitButton onClick={() => setShowModal(false)} />
+                                            <div className="flex justify-end mt-4"> 
+                                                <ExitButton  onClick={() => setShowModal(false)} />
                                             </div>
                                             <div className="pl-6 pr-6 pb-6 space-y-4 ">
                                                 <h1 className="text-xl font-bold leading-tight tracking-tight text-black text-center">

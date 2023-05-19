@@ -9,7 +9,6 @@ import Modal from "../src/app/components/registerModal";
 import "@testing-library/jest-dom/extend-expect";
 import axios from "axios";
 
-
 // Importa la función o biblioteca que quieres mockear
 
 jest.mock("axios");
@@ -21,33 +20,33 @@ describe("Modal component", () => {
 
   test('se abre el modal al hacer clic en "Registrate"', () => {
     render(<Modal />);
-  
+
     // Verificar que el modal no esté visible inicialmente
     expect(screen.queryByTestId('modal')).toBeNull();
-  
+
     // Hacer clic en el enlace "Registrate"
     fireEvent.click(screen.getByText('Registrate'));
-  
+
     // Verificar que el modal esté visible después de hacer clic en "Registrate"
     expect(screen.getByTestId('modal')).toBeInTheDocument();
   });
 
   test('los campos del formulario de registro están presentes', () => {
     render(<Modal />);
-  
+
     fireEvent.click(screen.getByText('Registrate'));
-  
+
     expect(screen.getByLabelText('Nombre')).toBeInTheDocument();
     expect(screen.getByLabelText('Correo electrónico')).toBeInTheDocument();
     expect(screen.getByLabelText('Contraseña')).toBeInTheDocument();
     expect(screen.getByLabelText('Confirmar Contraseña')).toBeInTheDocument();
   });
-  
+
   test('se muestra el botón "Registrarse"', () => {
     render(<Modal />);
-  
+
     fireEvent.click(screen.getByText('Registrate'));
-  
+
     expect(screen.getByText('Registrarse')).toBeInTheDocument();
   });
 
@@ -150,7 +149,26 @@ describe("Modal component", () => {
     expect(screen.getByText('Las contraseñas no coinciden')).toBeInTheDocument();
   });
 
-  
+  test('se cierra el modal al hacer clic en el botón de salida', () => {
+    render(<Modal />);
+    fireEvent.click(screen.getByText('Registrate'));
+    fireEvent.click(screen.getByTestId('exit-button'));
+    expect(screen.queryByTestId('modal')).toBeNull();
+  });
 
-  // Add more tests for other scenarios and functionality as needed
+  test('El mensaje de error se actualiza correctamente', () => {
+    render(<Modal />);
+    fireEvent.click(screen.getByText('Registrate'));
+    
+    fireEvent.submit(screen.getByTestId('registration-form'));
+    expect(screen.getByText('Por favor llene todos los campos')).toBeInTheDocument();
+
+    fireEvent.change(screen.getByLabelText('Nombre'), { target: { value: 'John Doe' } });
+    fireEvent.change(screen.getByLabelText('Correo electrónico'), { target: { value: 'john@example.com' } });
+    fireEvent.change(screen.getByLabelText('Contraseña'), { target: { value: 'password123' } });
+    fireEvent.change(screen.getByLabelText('Confirmar Contraseña'), { target: { value: 'different' } });
+    fireEvent.submit(screen.getByTestId('registration-form'));
+    expect(screen.getByText('Las contraseñas no coinciden')).toBeInTheDocument();
+  });
+
 });
