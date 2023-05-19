@@ -32,11 +32,12 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: SonarQube Scan
-      run: sonar-scanner -X
+      uses: kitabisa/sonarqube-action@master
       with:
         host: ${{ secrets.SONARQUBE_HOST }}
         login: ${{ secrets.SONARQUBE_TOKEN }}
     
-    
+    - name: SonarQube dos
+      run: sonar-scanner -X
 
 
