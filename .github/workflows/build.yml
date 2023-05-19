@@ -36,8 +36,7 @@ jobs:
       with:
         host: ${{ secrets.SONARQUBE_HOST }}
         login: ${{ secrets.SONARQUBE_TOKEN }}
+        options: -X
     
-    - name: SonarQube dos
-      run: sonar-scanner -X
 
 
