@@ -3,7 +3,7 @@ name: Test Node.js App
 on:
   push:
     branches:
-      - develop
+      - HU-19
 
 jobs:
   test:
@@ -22,4 +22,7 @@ jobs:
 
     - name: Run tests
       run: npm test
+
+    - name: Sonar
+      run: npm sonar
 

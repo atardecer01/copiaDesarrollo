@@ -4,16 +4,8 @@
 import React from 'react';
 import { render, fireEvent, screen  } from '@testing-library/react';
 import { useDispatch } from 'react-redux';
-//import { setSessionTime, setBreakTime, setIntervalBreak, setBreakButton, setNecessaryButton } from '../features/answers/answersSlice';
-import {
-  setLastInterface,
-  setSessionTime,
-  setBreakButton,
-  setBreakTime,
-  setIntervalBreak,
-  setNecessaryButton,
-} from '../src/app/features/answers/answersSlice';
-
+//import { setLastInterface, setSessionTime, setBreakTime, setIntervalBreak, setBreakButton, setNecessaryButton } from '../features/answers/answersSlice';
+import { setLastInterface, setSessionTime, setBreakButton, setBreakTime, setIntervalBreak, setNecessaryButton } from "../src/app/features/answers/answersSlice";
 import Time from '../src/app/SetTime/page.jsx';
 import '@testing-library/jest-dom';
 
@@ -47,6 +39,9 @@ describe('Time component', () => {
   });
 
 
+  
+  
+
   test('calls setSessionTime action when select value is changed', () => {
     const { getByRole } = render(<Time />);
     const selectElement = getByRole('combobox');
@@ -66,4 +61,32 @@ describe('Time component', () => {
     render(<Time />);
     // Verifica que las acciones setBreakTime, setIntervalBreak, setBreakButton, y setNecessaryButton hayan sido llamadas con los valores correctos
   });
+
+  test('changeInterface navigates correctly', () => {
+    // Simula los objetos y funciones necesarios para las pruebas
+    const oldInterface = '/SetBook';
+    const router = jest.fn();
+    jest.spyOn(require("next/navigation"), "useRouter").mockImplementation(() => ({
+      push: router,
+    }));
+    const dispatch = jest.fn();
+  
+    // Renderiza el componente Time en un entorno de prueba
+    const { getByText } = render(
+      <Time />
+    );
+  
+    // Llama a la función changeInterface dentro del componente Time
+    fireEvent.click(getByText('Volver')); // Simula el evento de clic en el botón Volver
+  
+    // Realiza las verificaciones adecuadas
+    //expect(dispatch).toHaveBeenCalledWith(setLastInterface('/SetTime'));
+    
+    if (oldInterface !== '/SetBook') {
+      expect(router).toHaveBeenCalledWith('/');
+    } else {
+      expect(router).toHaveBeenCalledWith('/SetBook');
+    }
+  });
+ 
 });
