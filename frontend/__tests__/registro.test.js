@@ -145,6 +145,19 @@ describe("Modal component", () => {
       expect(screen.getByText("Registro exitoso")).toBeInTheDocument();
     });
 
+  
+    // Verifica que los campos del formulario se hayan restablecido
+    fireEvent.change(screen.getByLabelText('Nombre'), { target: { value: '' } });
+    fireEvent.change(screen.getByLabelText('Correo electrónico'), { target: { value: '' } });
+    fireEvent.change(screen.getByLabelText('Contraseña'), { target: { value: '' } });
+    fireEvent.change(screen.getByLabelText('Confirmar Contraseña'), { target: { value: '' } });
+
+    expect(screen.getByLabelText('Nombre').value).toBe('');
+    expect(screen.getByLabelText('Correo electrónico').value).toBe('');
+    expect(screen.getByLabelText('Contraseña').value).toBe('');
+    expect(screen.getByLabelText('Confirmar Contraseña').value).toBe('');
+
+
 });
 
 
