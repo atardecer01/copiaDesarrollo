@@ -50,12 +50,6 @@ export default function Modal() {
               icon: "success"
             });
             setShowModal(false);
-            setForm({
-              nombre: '',
-              email: '',
-              password: '',
-              confirmPassword: ''
-            });
           })
           .catch(async (error) => {
             await swal({
