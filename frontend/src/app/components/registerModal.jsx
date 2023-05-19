@@ -59,7 +59,7 @@ export default function Modal() {
             });
         } catch (error) {
             swal({
-                title: error.response.data.msg,
+                title: "error",
                 icon: "warning",
                 button: "Aceptar"
             })

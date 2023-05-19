@@ -91,6 +91,7 @@ test('ButtonBack component renders the correct text', () => {
 
   //--------------------Modal-------------------
 
+  
  //describe('Modal', () => {
     /*test('renders register modal correctly', () => {
       const { queryAllByText, getByRole } = render(<Modal />);

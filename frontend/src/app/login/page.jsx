@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Button from "../components/button";
 import Register from "../components/registerModal";
 
 export default function LoginPage() {

@@ -3,12 +3,12 @@
  */
 
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, waitForElementToBeRemoved } from "@testing-library/react";
 import Modal from "../src/app/components/registerModal";
 // En el archivo de configuración de Jest (jest.config.js) o en cada archivo de prueba
 import "@testing-library/jest-dom/extend-expect";
 import axios from "axios";
-
+import swal from 'sweetalert';
 
 // Importa la función o biblioteca que quieres mockear
 
@@ -18,6 +18,8 @@ jest.mock("axios");
 
 
 describe("Modal component", () => {
+
+
 
   test('se abre el modal al hacer clic en "Registrate"', () => {
     render(<Modal />);
@@ -30,6 +32,22 @@ describe("Modal component", () => {
   
     // Verificar que el modal esté visible después de hacer clic en "Registrate"
     expect(screen.getByTestId('modal')).toBeInTheDocument();
+  });
+
+  test('closes the modal when ExitButton is clicked', () => {
+    render(<Modal />);
+
+    // Abre el modal haciendo clic en el enlace "Registrate"
+    fireEvent.click(screen.getByText('Registrate'));
+
+    // Verifica que el modal esté abierto
+    expect(screen.getByTestId('modal')).toBeInTheDocument();
+
+    // Cierra el modal haciendo clic en el botón de salida
+    fireEvent.click(screen.getByTestId('exit-button'));
+
+    // Verifica que el modal esté cerrado
+    expect(screen.queryByTestId('modal')).toBeNull();
   });
 
   test('los campos del formulario de registro están presentes', () => {

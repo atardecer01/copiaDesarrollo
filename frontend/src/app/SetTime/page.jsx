@@ -87,7 +87,7 @@ export default function Time() {
   return (
     <>
       <div className="flex justify-start mt-10 ml-8">
-        <ButtonBack
+        <ButtonBack data-testid='Volver'
           texto={"Volver"}
           onClick={() => {
             changeInterface();
