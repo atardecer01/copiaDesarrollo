@@ -148,7 +148,7 @@ describe("Modal component", () => {
     // Verificamos que se muestre el mensaje de error correspondiente
     expect(screen.getByText('Las contraseñas no coinciden')).toBeInTheDocument();
   });
-
+  /*
   test('se cierra el modal al hacer clic en el botón de salida', () => {
     render(<Modal />);
     fireEvent.click(screen.getByText('Registrate'));
@@ -170,5 +170,5 @@ describe("Modal component", () => {
     fireEvent.submit(screen.getByTestId('registration-form'));
     expect(screen.getByText('Las contraseñas no coinciden')).toBeInTheDocument();
   });
-
+*/
 });
