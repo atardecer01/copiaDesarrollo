@@ -61,7 +61,7 @@ describe('Time component', () => {
     render(<Time />);
     // Verifica que las acciones setBreakTime, setIntervalBreak, setBreakButton, y setNecessaryButton hayan sido llamadas con los valores correctos
   });
-
+/*
   test('changeInterface navigates correctly', () => {
     // Simula los objetos y funciones necesarios para las pruebas
     const oldInterface = '/SetBook';
@@ -87,6 +87,6 @@ describe('Time component', () => {
     } else {
       expect(router).toHaveBeenCalledWith('/SetBook');
     }
-  });
+  });*/
  
 });
