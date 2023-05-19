@@ -28,43 +28,44 @@ export default function Modal() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (form.nombre === '' || form.email === '' || form.password === '' || form.confirmPassword === '') {
-            setErrorMessage("Por favor llene todos los campos");
-            return;
+          setErrorMessage("Por favor llene todos los campos");
+          return;
         }
         if (form.password !== form.confirmPassword) {
-            setErrorMessage("Las contraseñas no coinciden");
-            return;
+          setErrorMessage("Las contraseñas no coinciden");
+          return;
         }
-    
+      
         setErrorMessage("");
         // Aquí se envía el formulario al servidor
-    
+      
         const nombre = form.nombre;
         const email = form.email;
         const password = form.password;
-    
+      
         axios.post("http://localhost:4000/api/usuarios", { nombre, password, email })
-            .then((respuesta) => {
-                swal({
-                    title: "Registro exitoso",
-                    icon: "success"
-                });
-                setShowModal(false);
-                setForm({
-                    nombre: '',
-                    email: '',
-                    password: '',
-                    confirmPassword: ''
-                });
-            })
-            .catch((error) => {
-                swal({
-                    title: error.response.data.msg,
-                    icon: "warning",
-                    button: "Aceptar"
-                });
+          .then(async (respuesta) => {
+            await swal({
+              title: "Registro exitoso",
+              icon: "success"
             });
-    };
+            setShowModal(false);
+            setForm({
+              nombre: '',
+              email: '',
+              password: '',
+              confirmPassword: ''
+            });
+          })
+          .catch(async (error) => {
+            await swal({
+              title: error.response.data.msg,
+              icon: "warning",
+              button: "Aceptar"
+            });
+          });
+      };
+      
     
 
     return (
