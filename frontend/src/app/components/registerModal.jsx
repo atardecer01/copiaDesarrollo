@@ -25,7 +25,7 @@ export default function Modal() {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (form.nombre === '' || form.email === '' || form.password === '' || form.confirmPassword === '') {
             setErrorMessage("Por favor llene todos los campos");
@@ -35,36 +35,37 @@ export default function Modal() {
             setErrorMessage("Las contraseñas no coinciden");
             return;
         }
-
+    
         setErrorMessage("");
-        // Aquí se envia el formulario al servidor
-
+        // Aquí se envía el formulario al servidor
+    
         const nombre = form.nombre;
         const email = form.email;
         const password = form.password;
-
-        try {
-            const url = "http://localhost:4000/api/usuarios"
-            const respuesta = await axios.post(url, { nombre, password, email });
-            swal({
-                title: "Registro exitoso",
-                icon: "success"
+    
+        axios.post("http://localhost:4000/api/usuarios", { nombre, password, email })
+            .then((respuesta) => {
+                swal({
+                    title: "Registro exitoso",
+                    icon: "success"
+                });
+                setShowModal(false);
+                setForm({
+                    nombre: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: ''
+                });
             })
-            setShowModal(false);
-            setForm({
-                nombre: '',
-                email: '',
-                password: '',
-                confirmPassword: ''
+            .catch((error) => {
+                swal({
+                    title: error.response.data.msg,
+                    icon: "warning",
+                    button: "Aceptar"
+                });
             });
-        } catch (error) {
-            swal({
-                title: error.response.data.msg,
-                icon: "warning",
-                button: "Aceptar"
-            })
-        }
     };
+    
 
     return (
         <>
