@@ -37,7 +37,6 @@ export default function Modal() {
         }
       
         setErrorMessage("");
-        // Aquí se envía el formulario al servidor
       
         const nombre = form.nombre;
         const email = form.email;
@@ -50,6 +49,12 @@ export default function Modal() {
               icon: "success"
             });
             setShowModal(false);
+            setForm({
+              nombre: '',
+              email: '',
+              password: '',
+              confirmPassword: ''
+            });
           })
           .catch(async (error) => {
             await swal({
@@ -59,9 +64,6 @@ export default function Modal() {
             });
           });
       };
-      
-    
-
     return (
         <>
             {/*<ButtonBack texto='abrir' onClick={() => { setShowModal(true) }} />*/}

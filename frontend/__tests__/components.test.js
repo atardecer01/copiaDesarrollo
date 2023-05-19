@@ -7,6 +7,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Button from '../src/app/components/button.jsx';
 import ButtonBack from '../src/app/components/buttonBack';
 import ExitButton from '../src/app/components/exitButton';
+import Timer from '../src/app/components/timer.jsx';
 //import Modal from '../components/registerModal';
 import '@testing-library/jest-dom';
 import axios from 'axios';
@@ -32,6 +33,55 @@ test('Button component calls the onClick function when clicked', () => {
   const buttonElement = screen.getByRole('button');
   fireEvent.click(buttonElement);
   expect(onClick).toHaveBeenCalledTimes(1);
+});
+
+test('renderiza correctamente el componente Timer', () => {
+  // Configurar los datos de prueba
+  const hour = 1;
+  const min = 30;
+  const sec = 45;
+  const borderColor = 'green-500';
+  const textColor = 'green-700';
+
+  // Renderizar el componente
+  render(
+    <Timer
+      hour={hour}
+      min={min}
+      sec={sec}
+      borderColor={borderColor}
+      textColor={textColor}
+    />
+  );
+
+  // Verificar que los elementos de texto estén presentes
+  expect(screen.getByText(hour)).toBeInTheDocument();
+  expect(screen.getByText('Hora')).toBeInTheDocument();
+  expect(screen.getByText(min)).toBeInTheDocument();
+  expect(screen.getByText('Minutos')).toBeInTheDocument();
+  expect(screen.getByText(sec)).toBeInTheDocument();
+  expect(screen.getByText('Segundos')).toBeInTheDocument();
+
+  // Verificar que los estilos de borde y texto sean los correctos
+  const hourElement = screen.getByText(hour);
+  expect(hourElement).toHaveClass(`border-${borderColor}`);
+  expect(hourElement).toHaveClass('text-4xl');
+  expect(hourElement).toHaveClass('rounded-xl');
+
+  const minElement = screen.getByText(min);
+  expect(minElement).toHaveClass(`border-${borderColor}`);
+  expect(minElement).toHaveClass('text-4xl');
+  expect(minElement).toHaveClass('rounded-xl');
+
+  const secElement = screen.getByText(sec);
+  expect(secElement).toHaveClass(`border-${borderColor}`);
+  expect(secElement).toHaveClass('text-4xl');
+  expect(secElement).toHaveClass('rounded-xl');
+
+  // Verificar que los estilos de texto tengan el color correcto
+  expect(screen.getByText('Hora')).toHaveClass(`text-${textColor}`);
+  expect(screen.getByText('Minutos')).toHaveClass(`text-${textColor}`);
+  expect(screen.getByText('Segundos')).toHaveClass(`text-${textColor}`);
 });
 
 
