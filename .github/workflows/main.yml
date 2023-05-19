@@ -21,6 +21,16 @@ jobs:
       run: npm ci
 
     - name: Run tests
-      run: npm test
+      run: |
+        cd frontend    # Cambia al directorio "frontend"
+        npm install 
+        npm test       # Ejecuta los tests    # Cambia al directorio "frontend"
+                        # Ejecuta los tests
+    - name: Sonar
+      run: |
+        cd frontend    # Cambia al directorio "frontend"
+        npm install 
+        npm sonar
+    
 
 
