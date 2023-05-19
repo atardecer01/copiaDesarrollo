@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - HU-19
+  pull_request:
+   types: [opened, synchronize, reopened]
 
 jobs:
   test:
@@ -26,7 +28,16 @@ jobs:
         npm install 
         npm test       # Ejecuta los tests    # Cambia al directorio "frontend"
                         # Ejecuta los tests
-   
+  sonarQubeTrigger:
+    name: SonarQube Trigger
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: SonarQube Scan
+      uses: kitabisa/sonarqube-action@master
+      with:
+        host: ${{ secrets.SONARQUBE_HOST }}
+        login: ${{ secrets.SONARQUBE_TOKEN }
     
 
 
