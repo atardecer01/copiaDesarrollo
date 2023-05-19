@@ -44,16 +44,12 @@ export default function Modal() {
         const password = form.password;
 
         try {
-            const url = "http://localhost:4000/api/usuarios";
+            const url = "http://localhost:4000/api/usuarios"
             const respuesta = await axios.post(url, { nombre, password, email });
-            await new Promise((resolve) => {
-                swal({
-                    title: "Registro exitoso",
-                    icon: "success"
-                }).then(() => {
-                    resolve();
-                });
-            });
+            swal({
+                title: "Registro exitoso",
+                icon: "success"
+            })
             setShowModal(false);
             setForm({
                 nombre: '',
@@ -62,17 +58,12 @@ export default function Modal() {
                 confirmPassword: ''
             });
         } catch (error) {
-            await new Promise((resolve) => {
-                swal({
-                    title: error.response.data.msg,
-                    icon: "warning",
-                    button: "Aceptar"
-                }).then(() => {
-                    resolve();
-                });
-            });
+            swal({
+                title: error.response.data.msg,
+                icon: "warning",
+                button: "Aceptar"
+            })
         }
-        
     };
 
     return (
