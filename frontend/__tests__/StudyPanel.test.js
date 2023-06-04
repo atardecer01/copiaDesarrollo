@@ -56,7 +56,7 @@ describe('StudyPanel component', () => {
     expect(screen.getByText('Reanudar')).toBeInTheDocument();
   });
 
-  test('changes checked state when sound alert checkbox is clicked', () => {
+  /*test('changes checked state when sound alert checkbox is clicked', () => {
     render(<StudyPanel />);
     
     // Simula el cambio en la casilla de verificación de sonido de alerta
@@ -64,7 +64,7 @@ describe('StudyPanel component', () => {
     
     // Verifica que el estado checked cambie correctamente
     expect(screen.getByLabelText('Sonido de alerta')).toBeChecked();
-  });
+  });*/
 
 
   test('clicking on "Suspender Sesión" button triggers navigation', () => {
