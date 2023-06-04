@@ -2,9 +2,10 @@
 import ButtonBack from "../components/buttonBack";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 
 import { useState } from "react";
-import { setLastInterface, setSessionTime } from "../features/answers/answersSlice";
+import { setLastInterface, setSessionTime, setBreakButton, setBreakTime, setIntervalBreak, setNecessaryButton } from "../features/answers/answersSlice";
 import PTime from "../PersonalTime/page";
 import styled from "styled-components";
 
@@ -16,6 +17,8 @@ export default function Time() {
 
   const oldInterface = useSelector((state) => state.answers.lastInterface);
 
+  const timeSystem = useSelector((state) => state.answers.timeSystem);
+
   const changeInterface = () => {
     if (oldInterface != "/SetBook") {
       router.push("/");
@@ -25,7 +28,61 @@ export default function Time() {
     dispatch(setLastInterface("/SetTime"));
   };
 
-  const [estadoM , cambiarE] = useState(false);
+  const [estadoM, cambiarE] = useState(false);
+
+  const [opciones, setOpciones] = useState(opcionesPredeterminadas(timeSystem));
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setOpciones({
+      ...opciones,
+      [name]: value,
+    });
+  };
+
+  function opcionesPredeterminadas(sistema) {
+    const myObj = {
+      tiempoEstudio: 0,
+      tiempoDescanso: 0,
+      intervaloDescanso: 0,
+      botonDescanso: true,
+      botonPausa: true
+    }
+    if (sistema == 1) {
+
+      myObj.tiempoEstudio = useSelector((state) => state.answers.sessionTime);
+      myObj.tiempoDescanso = 10;
+      myObj.intervaloDescanso = 50;
+      myObj.botonDescanso = true;
+      myObj.botonPausa = true;
+
+    }
+    else if (sistema == 2) {
+      myObj.tiempoEstudio = useSelector((state) => state.answers.sessionTime);
+      myObj.tiempoDescanso = 15;
+      myObj.intervaloDescanso = 45;
+      myObj.botonDescanso = false;
+      myObj.botonPausa = false;
+
+    }
+    else {
+      myObj.tiempoEstudio = useSelector((state) => state.answers.sessionTime);
+      myObj.tiempoDescanso = 5;
+      myObj.intervaloDescanso = 20;
+      myObj.botonDescanso = false;
+      myObj.botonPausa = false;
+
+    }
+    dispatch(setBreakTime(myObj.tiempoDescanso));
+    dispatch(setIntervalBreak(myObj.intervaloDescanso));
+    dispatch(setBreakButton(myObj.botonDescanso));
+    dispatch(setNecessaryButton(myObj.botonPausa));
+    return myObj;
+  }
+
+  function tiempoDeEstudio(e) {
+    dispatch(setSessionTime(+e.target.value));
+  }
 
   return (
     <>
@@ -44,43 +101,42 @@ export default function Time() {
         <div className="w-96 mb-12 h-px border border-t border-solid border-gray-line p-0 mx-auto"></div>
         <select
           className="mt-5 mb-10 bg-white focus:outline-none text-sky-blue font-bold py-2 px-4 rounded-xl text-xl border w-80 border-blue-text-button h-12 shadow-sm shadow-purple-text"
-          onChange={(e) => dispatch(setSessionTime(+e.target.value))}
+          onChange={(e) => tiempoDeEstudio(e)}
         >
-          <option value="1">1 hora</option>
-          <option value="2">2 horas</option>
-          <option value="3">3 horas</option>
-          <option value="4">4 horas</option>
-          <option value="5">5 horas</option>
+          <option value="60">1 hora</option>
+          <option value="120">2 horas</option>
+          <option value="180">3 horas</option>
+          <option value="240">4 horas</option>
+          <option value="300">5 horas</option>
         </select>
-        <ButtonBack texto='Continuar' onClick={()=> {cambiarE(!estadoM);}} />
+        <ButtonBack texto='Continuar' onClick={() => { cambiarE(!estadoM); }} />
       </section>
       <PTime estado={estadoM}
-             cambioEstado={cambiarE}>
-           <Enca> 
-           <div>
-            <h1> Tiempo de estudio(min)  </h1>
-            <input type="text" placeholder= '30'></input>
-            
-           </div>
-           <div>
-            <h1> Tiempo de estudio(min)  </h1>
-            <input type="text" placeholder= '25' ></input>
-           </div>
-           <div>
+        cambioEstado={cambiarE}>
+        <Enca>
+          {/*<div>
             <h1> Tiempo de estudio  </h1>
-            <input type="text" placeholder= '25'></input>
-           </div>
-           <div>
-            <h1> Tiempo de estudio  </h1>
-            <input type="text" placeholder= '30'></input>
-            
-           </div>
-            
-          </Enca>
-           
-        
+            <input type="text" value={opciones.tiempoEstudio} name="tiempoEstudio" onChange={handleChange}  ></input>
+        </div>*/}
+          <div>
+            <h1> Tiempo de descanso  </h1>
+            <input type="text" value={opciones.tiempoDescanso} name="tiempoDescanso" onChange={handleChange}  ></input>
+          </div>
+          <div>
+            <h1> Intervalo de descansos  </h1>
+            <input type="text" value={opciones.intervaloDescanso} name="intervaloDescanso" onChange={handleChange}  ></input>
+          </div>
+          <div>
+            <h1> Botón descanso  </h1>
+            <input type="checkbox" checked={opciones.botonDescanso} name="botonDescanso" onChange={handleChange}  ></input>
+          </div>
+          <div>
+            <h1> Botón pausa necesaria  </h1>
+            <input type="checkbox" checked={opciones.botonPausa} name="botonPausa" onChange={handleChange} ></input>
+          </div>
 
-       </PTime>
+        </Enca>
+      </PTime>
     </>
   );
 }

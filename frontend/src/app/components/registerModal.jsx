@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import ExitButton from "../components/exitButton";
+import swal from "sweetalert";
 
 export default function Modal() {
     const [showModal, setShowModal] = useState(false);
@@ -24,33 +25,45 @@ export default function Modal() {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (form.nombre === '' || form.email === '' || form.password === '' || form.confirmPassword === '') {
-            setErrorMessage("Por favor llene todos los campos");
-            return;
+          setErrorMessage("Por favor llene todos los campos");
+          return;
         }
         if (form.password !== form.confirmPassword) {
-            setErrorMessage("Las contraseñas no coinciden");
-            return;
+          setErrorMessage("Las contraseñas no coinciden");
+          return;
         }
-
+      
         setErrorMessage("");
-        // Aquí se envia el formulario al servidor
-
+      
         const nombre = form.nombre;
         const email = form.email;
         const password = form.password;
-
-        try {
-            const url = "http://localhost:4000/api/usuarios"
-            const respuesta = await axios.post(url,{nombre, password,email});
-            console.log(respuesta);
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
+      
+        axios.post("http://localhost:4000/api/usuarios", { nombre, password, email })
+          .then(async () => {
+            await swal({
+              title: "Registro exitoso",
+              icon: "success"
+            });
+            setShowModal(false);
+            setForm({
+              nombre: '',
+              email: '',
+              password: '',
+              confirmPassword: ''
+            });
+          })
+          .catch(async (error) => {
+            await swal({
+              title: error.response.data.msg,
+              icon: "warning",
+              button: "Aceptar"
+            });
+          });
+      };
     return (
         <>
             {/*<ButtonBack texto='abrir' onClick={() => { setShowModal(true) }} />*/}
@@ -66,20 +79,21 @@ export default function Modal() {
                 <>
                     <div
                         className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                        data-testid="modal"
                     >
                         <div className="relative w-auto mx-auto max-w-3xl">
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-96 bg-white outline-none focus:outline-none">
                                 <section className="bg-gray-50">
                                     <div className="flex flex-col items-center justify-center px-6 ">
                                         <div className="w-full bg-white xl:p-0">
-                                            <div className="flex justify-end mt-4">
-                                                <ExitButton onClick={() => setShowModal(false)} />
+                                            <div className="flex justify-end mt-4"> 
+                                                <ExitButton  onClick={() => setShowModal(false)} />
                                             </div>
                                             <div className="pl-6 pr-6 pb-6 space-y-4 ">
                                                 <h1 className="text-xl font-bold leading-tight tracking-tight text-black text-center">
-                                                    Registrarse
+                                                    Registro
                                                 </h1>
-                                                <form className="space-y-6" action="#" onSubmit={handleSubmit}>
+                                                <form data-testid="registration-form" className="space-y-6" action="#" onSubmit={handleSubmit}>
                                                     <div>
                                                         <label htmlFor="nombre" className="block mb-2 text-sm font-medium  text-black">Nombre</label>
                                                         <input type="text" name="nombre" id="nombre" value={form.nombre} onChange={handleChange} className="bg-gray-50 border border-gray-300
@@ -99,10 +113,10 @@ export default function Modal() {
                                                     </div>
 
                                                     {errorMessage && (
-                                                        <div className="text-suspend-session-button-color mb-4">{errorMessage}</div>
+                                                        <div data-testid="error-message" className="text-suspend-session-button-color mb-4">{errorMessage}</div>
                                                     )}
 
-                                                    <button type="submit" className="w-full text-white font-medium rounded-xl text-sm px-5 py-2.5 text-center bg-blue-text-button ">Registrarse</button>
+                                                    <button data-testid='boton-registro' type="submit" className="w-full text-white font-medium rounded-xl text-sm px-5 py-2.5 text-center bg-blue-text-button ">Registrarse</button>
                                                 </form>
                                             </div>
                                         </div>

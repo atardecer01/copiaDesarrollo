@@ -3,10 +3,14 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   lastInterface: 7,
   currentInfoPrincipalPage: 0,
-  sessionTime: 1,
+  sessionTime: 60,
   timeSystem: null,
   book: null,
-  bookPage: null
+  bookPage: null,
+  breakTime: 10,
+  intervalBreak: 15,
+  breakButton: false,
+  necessaryBreakButton: false
 }
 
 export const answersSlice = createSlice({
@@ -30,12 +34,24 @@ export const answersSlice = createSlice({
       },
       setCurrentInfoPrincipalPage: (state, action) => {
         state.currentInfoPrincipalPage = action.payload
+      },
+      setBreakTime: (state, action) => {
+        state.breakTime = action.payload
+      },
+      setIntervalBreak: (state, action) => {
+        state.intervalBreak = action.payload
+      },
+      setBreakButton: (state, action) => {
+        state.breakButton = action.payload
+      },
+      setNecessaryButton: (state, action) => {
+        state.necessaryBreakButton = action.payload
       }
     },
   })
-  
+
   // Action creators are generated for each case reducer function
   export const {setLastInterface, setSessionTime, setTimeSystem, setBook, setBookPage
-  ,setCurrentInfoPrincipalPage} = answersSlice.actions
+  ,setCurrentInfoPrincipalPage, setBreakTime, setIntervalBreak, setBreakButton, setNecessaryButton} = answersSlice.actions
 
   export default answersSlice.reducer
