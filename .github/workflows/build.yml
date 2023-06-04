@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - HU-22
+      - develop
   pull_request:
     types: [opened, synchronize, reopened]
 

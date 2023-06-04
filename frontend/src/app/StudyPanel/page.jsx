@@ -73,11 +73,11 @@ export default function StudyPanel(){
     return(
         <>
         
-            <div className="flex justify-between mt-10">
+            <div className="flex justify-between mt-10 mr-4">
                 <button onClick={()=>{router.push('/')}} className=" bg-suspend-session-button-color hover:bg-hover-suspend-session-color active:bg-click-suspend-session-color text-white font-bold py-2 px-4 rounded-xl w-46 text-xl border  border-suspend-session-button-color ml-8 h-12 shadow-sm shadow-purple-text">
                     Suspender Sesión
                 </button>
-                <Button onClick={()=>console.log("sesion Cerrada")} widht={'large'} texto = {"Cerrar Sesion"}/>
+                <Button onClick={()=>console.log("sesion Cerrada")} widht={'large'} texto = {"Cerrar Sesion"} />
                 {/*AQUI IRIA EL BOTON DE USUARIO QUE SE USA PARA CERRAR SESIÓN */}
             </div>
 
@@ -91,16 +91,15 @@ export default function StudyPanel(){
                     <Timer hour={hours.toString().padStart(2,"0")} min={minutes.toString().padStart(2,"0")} sec={seconds.toString().padStart(2,"0")} borderColor={"black"} textColor={"black"}/>
                     <button onClick={handleBreakButton} className={` bg-white hover:bg-hover-color-button active:bg-click-color-button text-blue-text-button font-bold py-2 px-4 rounded-xl text-xl border border-blue-text-button h-12 shadow-sm w-large shadow-purple-text `} >{inBreak? "Reanudar":"Descansar"}</button>
                     
-                    
 
                 </section>
                 <div className="flex flex-col items-center gap-5 w-2/6 pl-36 pt-5">
-                    {breakNeededButton()}
+                    {/*breakNeededButton()*/}
 
-                    <label className="inline-flex items-center">
+                    {/*<label className="inline-flex items-center">
                         <span className="mr-2 text-gray-700">Sonido de alerta</span>
                         <input type="checkbox" className="form-checkbox h-8 w-8 font-bold text-indigo-600" checked={checked} onChange={handleChange} />
-                    </label>
+    </label>*/}
                 </div>
             </div>
         
