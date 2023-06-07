@@ -20,7 +20,7 @@ export default function StudyPanel(){
     const [timeLeft, setTimeLeft]=useState(300);
     const [allowedBreak,setAllowedBreak]=useState(false);
 
-    const timeSystem = useSelector(state => state.answers.timeSystem);
+    //const timeSystem = useSelector(state => state.answers.timeSystem);
     
     useEffect(()=>{
         let nintervalID;
@@ -54,7 +54,7 @@ export default function StudyPanel(){
         console.log("Reloj iniciado o pausado");
 
     }
-    
+    /*
     const breakNeededButton=()=>{
         return (
         <>
@@ -68,7 +68,7 @@ export default function StudyPanel(){
     function handleChange() {
         setChecked(!checked);
     }
-    
+    */
 
     return(
         <>
