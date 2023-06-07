@@ -1,9 +1,45 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Button from "../components/button";
 import Register from "../components/registerModal";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const router = useRouter();
+
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if ( email === '' || password === '') {
+      setErrorMessage("Por favor llene todos los campos");
+      return;
+    }
+  
+    setErrorMessage("");
+
+   
+  
+    axios.post("http://localhost:4000/api/usuarios/login", { email, password })
+      .then(async () => {
+        
+
+         router.push('/')
+      })
+      .catch(async (error) => {
+        await swal({
+          title: error,
+          icon: "warning",
+          button: "Aceptar"
+        });
+      });
+  };
+
+
   return (
     <div className="min-h-full flex items-center justify-center mt-32 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -12,11 +48,13 @@ export default function LoginPage() {
             Lawatty
           </h2>
         </div>
-        <form className="mt-8 space-y-6" data-testid="login-form">
+        <form className="mt-8 space-y-6" data-testid="login-form" onSubmit={handleLogin}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 autoComplete="none"
                 required
                 className="appearence-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500
@@ -28,6 +66,8 @@ export default function LoginPage() {
             <div>
               <input
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 autoComplete="none"
                 required
                 className="appearence-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500
