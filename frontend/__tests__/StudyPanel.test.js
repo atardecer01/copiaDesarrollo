@@ -56,16 +56,6 @@ describe('StudyPanel component', () => {
     expect(screen.getByText('Reanudar')).toBeInTheDocument();
   });
 
-  /*test('changes checked state when sound alert checkbox is clicked', () => {
-    render(<StudyPanel />);
-    
-    // Simula el cambio en la casilla de verificación de sonido de alerta
-    fireEvent.click(screen.getByLabelText('Sonido de alerta'));
-    
-    // Verifica que el estado checked cambie correctamente
-    expect(screen.getByLabelText('Sonido de alerta')).toBeChecked();
-  });*/
-
 
   test('clicking on "Suspender Sesión" button triggers navigation', () => {
     const mockRouterPush = jest.fn();
