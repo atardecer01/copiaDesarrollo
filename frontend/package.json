@@ -8,10 +8,10 @@
     "start": "next start",
     "event": "npm run dev",
     "lint": "eslint .",
-    "test": "jest --coverage",
-    
-    "sonar": "sonar-scanner",
-    "test:coverage": "jest --coverage"
+
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "sonar": "sonar-scanner"
   },
   "dependencies": {
     "@babel/core": ">=7.13.0 <8.0.0",
@@ -24,6 +24,7 @@
     "react-dom": "18.2.0",
     "react-is": ">=16.8.0",
     "react-redux": "^8.0.5",
+    "sonarqube-scanner": "^3.0.1",
     "styled-components": "^5.3.10",
     "sweetalert": "^2.1.2"
   },
