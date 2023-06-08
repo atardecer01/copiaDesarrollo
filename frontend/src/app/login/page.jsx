@@ -15,11 +15,7 @@ export default function LoginPage() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if ( email === '' || password === '') {
-      setErrorMessage("Por favor llene todos los campos");
-      return;
-    }
-  
+    
     setErrorMessage("");
 
    
