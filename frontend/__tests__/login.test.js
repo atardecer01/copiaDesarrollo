@@ -24,19 +24,19 @@ describe("LoginPage", () => {
   expect(screen.getByPlaceholderText("Contraseña")).toHaveValue("");
 });
 
-/*
+
   test("should update state on input change", () => {
     render(<LoginPage />);
     
     // Simular cambios en los campos de entrada
-    fireEvent.change(screen.getByLabelText("Email"), { target: { value: "test@example.com" } });
-    fireEvent.change(screen.getByLabelText("Password"), { target: { value: "password" } });
+    fireEvent.change(screen.getByPlaceholderText("Correo Electrónico"), { target: { value: "test@example.com" } });
+    fireEvent.change(screen.getByPlaceholderText("Contraseña"), { target: { value: "password" } });
     
     // Verificar que los estados se actualicen correctamente
-    expect(screen.getByLabelText("Email")).toHaveValue("test@example.com");
-    expect(screen.getByLabelText("Password")).toHaveValue("password");
+    expect(screen.getByPlaceholderText("Correo Electrónico")).toHaveValue("test@example.com");
+    expect(screen.getByPlaceholderText("Contraseña")).toHaveValue("password");
   });
-
+/*
   test("should display error message on API failure", async () => {
     const errorMessage = "Invalid credentials";
     axios.post.mockRejectedValueOnce(new Error(errorMessage));
