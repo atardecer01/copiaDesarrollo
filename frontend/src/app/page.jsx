@@ -20,7 +20,7 @@ export default function LoginPage() {
       })
       .catch(async (error) => {
         await swal({
-          title: error,
+          title: "Error",
           icon: "warning",
           button: "Aceptar"
         });
