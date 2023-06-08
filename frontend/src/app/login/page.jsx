@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Button from "../components/button";
 import Register from "../components/registerModal";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -9,7 +8,7 @@ import { useRouter } from "next/navigation";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [setErrorMessage] = useState("");
   const router = useRouter();
 
 

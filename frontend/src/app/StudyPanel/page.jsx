@@ -40,10 +40,6 @@ export default function StudyPanel(){
     const seconds = time%60;
     
 
-    const breakButton=()=>{
-        setInBreak(!inBreak);
-        console.log("Reloj iniciado o pausado");
-    }
 
     const handleBreakButton=()=>{
         setInBreak(!inBreak);
@@ -77,12 +73,7 @@ export default function StudyPanel(){
 
                 </section>
                 <div className="flex flex-col items-center gap-5 w-2/6 pl-36 pt-5">
-                    {/*breakNeededButton()*/}
-
-                    {/*<label className="inline-flex items-center">
-                        <span className="mr-2 text-gray-700">Sonido de alerta</span>
-                        <input type="checkbox" className="form-checkbox h-8 w-8 font-bold text-indigo-600" checked={checked} onChange={handleChange} />
-    </label>*/}
+                  
                 </div>
             </div>
         
