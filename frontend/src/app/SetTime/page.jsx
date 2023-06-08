@@ -2,9 +2,8 @@
 import ButtonBack from "../components/buttonBack";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import React from "react";
+import React, { useState } from "react";
 
-import { useState } from "react";
 import { setLastInterface, setSessionTime, setBreakButton, setBreakTime, setIntervalBreak, setNecessaryButton } from "../features/answers/answersSlice";
 import PTime from "../PersonalTime/page";
 import styled from "styled-components";
