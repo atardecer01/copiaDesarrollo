@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
 import Timer from "../components/timer";
-import { useSelector } from "react-redux";
 import Button from "../components/button";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -17,7 +16,7 @@ export default function StudyPanel(){
     //boton de descanso
 
     const [inBreak, setInBreak] = useState(false);    
-    const [timeLeft, setTimeLeft]=useState(300);
+    const [timeLeft]=useState(300);
     const [allowedBreak,setAllowedBreak]=useState(false);
     
     useEffect(()=>{
