@@ -48,9 +48,10 @@ export default function Time() {
       botonDescanso: true,
       botonPausa: true
     }
+    myObj.tiempoEstudio = useSelector((state) => state.answers.sessionTime);
     if (sistema == 1) {
 
-      myObj.tiempoEstudio = useSelector((state) => state.answers.sessionTime);
+      
       myObj.tiempoDescanso = 10;
       myObj.intervaloDescanso = 50;
       myObj.botonDescanso = true;
@@ -58,7 +59,7 @@ export default function Time() {
 
     }
     else if (sistema == 2) {
-      myObj.tiempoEstudio = useSelector((state) => state.answers.sessionTime);
+      
       myObj.tiempoDescanso = 15;
       myObj.intervaloDescanso = 45;
       myObj.botonDescanso = false;
@@ -66,7 +67,6 @@ export default function Time() {
 
     }
     else {
-      myObj.tiempoEstudio = useSelector((state) => state.answers.sessionTime);
       myObj.tiempoDescanso = 5;
       myObj.intervaloDescanso = 20;
       myObj.botonDescanso = false;
