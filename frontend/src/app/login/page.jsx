@@ -8,17 +8,13 @@ import { useRouter } from "next/navigation";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [setErrorMessage] = useState("");
+  
   const router = useRouter();
 
 
   const handleLogin = (e) => {
     e.preventDefault();
     
-    setErrorMessage("");
-
-   
-  
     axios.post("http://localhost:4000/api/usuarios/login", { email, password })
       .then(async () => {
         
