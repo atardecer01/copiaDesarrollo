@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Button from "./components/button";
 import Register from "./components/registerModal";
 import axios from "axios";
 import { useRouter } from "next/navigation";
