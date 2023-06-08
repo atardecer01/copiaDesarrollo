@@ -30,7 +30,7 @@ export default function Time() {
 
   const [estadoM, cambiarE] = useState(false);
 
-  const [opciones, setOpciones] = useState(opcionesPredeterminadas(timeSystem));
+  const [opciones, setOpciones] = useState(OpcionesPredeterminadas(timeSystem));
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -40,7 +40,7 @@ export default function Time() {
     });
   };
 
-  function opcionesPredeterminadas(sistema) {
+  function OpcionesPredeterminadas(sistema) {
     const myObj = {
       tiempoEstudio: 0,
       tiempoDescanso: 0,
