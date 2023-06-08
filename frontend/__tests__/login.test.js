@@ -122,6 +122,14 @@ describe("LoginPage3", () => {
       );
       
     });
+
+    /*await waitFor(() => {
+      expect(swal).toHaveBeenCalledWith({
+        title: 'Error',
+        icon: 'warning',
+        button: 'Aceptar',
+      });
+    });*/
   });
 
   // Agregar más pruebas según sea necesario

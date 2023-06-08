@@ -20,7 +20,7 @@ export default function LoginPage() {
       })
       .catch(async (error) => {
         await swal({
-          title: "Error",
+          title: "Credenciales invalidas",
           icon: "warning",
           button: "Aceptar"
         });
