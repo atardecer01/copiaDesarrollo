@@ -13,14 +13,12 @@ export default function StudyPanel(){
     const router= useRouter();
     
     //
-    const [checked, setChecked] = useState(false);
+
     //boton de descanso
 
     const [inBreak, setInBreak] = useState(false);    
     const [timeLeft, setTimeLeft]=useState(300);
     const [allowedBreak,setAllowedBreak]=useState(false);
-
-    //const timeSystem = useSelector(state => state.answers.timeSystem);
     
     useEffect(()=>{
         let nintervalID;
@@ -54,21 +52,7 @@ export default function StudyPanel(){
         console.log("Reloj iniciado o pausado");
 
     }
-    /*
-    const breakNeededButton=()=>{
-        return (
-        <>
-        <Button onClick={breakButton} widht={'extra-large'} texto = {inBreak? "Reanudar sesion":"Pausa Necesaria"}/>
-        </>
-        );
-    }
-
     
-
-    function handleChange() {
-        setChecked(!checked);
-    }
-    */
 
     return(
         <>
