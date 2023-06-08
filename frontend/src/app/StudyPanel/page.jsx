@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
 import Timer from "../components/timer";
-import { useSelector } from "react-redux";
 import Button from "../components/button";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -17,7 +16,7 @@ export default function StudyPanel(){
     //boton de descanso
 
     const [inBreak, setInBreak] = useState(false);    
-    const [timeLeft, setTimeLeft]=useState(300);
+    const [timeLeft]=useState(300);
     const [allowedBreak,setAllowedBreak]=useState(false);
     
     useEffect(()=>{
@@ -41,10 +40,6 @@ export default function StudyPanel(){
     const seconds = time%60;
     
 
-    const breakButton=()=>{
-        setInBreak(!inBreak);
-        console.log("Reloj iniciado o pausado");
-    }
 
     const handleBreakButton=()=>{
         setInBreak(!inBreak);
@@ -78,12 +73,7 @@ export default function StudyPanel(){
 
                 </section>
                 <div className="flex flex-col items-center gap-5 w-2/6 pl-36 pt-5">
-                    {/*breakNeededButton()*/}
-
-                    {/*<label className="inline-flex items-center">
-                        <span className="mr-2 text-gray-700">Sonido de alerta</span>
-                        <input type="checkbox" className="form-checkbox h-8 w-8 font-bold text-indigo-600" checked={checked} onChange={handleChange} />
-    </label>*/}
+                  
                 </div>
             </div>
         
