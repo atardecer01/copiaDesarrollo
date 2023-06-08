@@ -53,10 +53,10 @@ export default function StudyPanel(){
         <>
         
             <div className="flex justify-between mt-10 mr-4">
-                <button onClick={()=>{router.push('/')}} className=" bg-suspend-session-button-color hover:bg-hover-suspend-session-color active:bg-click-suspend-session-color text-white font-bold py-2 px-4 rounded-xl w-46 text-xl border  border-suspend-session-button-color ml-8 h-12 shadow-sm shadow-purple-text">
+                <button onClick={()=>{router.push('/home')}} className=" bg-suspend-session-button-color hover:bg-hover-suspend-session-color active:bg-click-suspend-session-color text-white font-bold py-2 px-4 rounded-xl w-46 text-xl border  border-suspend-session-button-color ml-8 h-12 shadow-sm shadow-purple-text">
                     Suspender Sesión
                 </button>
-                <Button onClick={()=>console.log("sesion Cerrada")} widht={'large'} texto = {"Cerrar Sesion"} />
+                <Button onClick={()=>router.push('/')} widht={'large'} texto = {"Cerrar Sesion"} />
                 {/*AQUI IRIA EL BOTON DE USUARIO QUE SE USA PARA CERRAR SESIÓN */}
             </div>
 

@@ -21,7 +21,7 @@ export default function Time() {
 
   const changeInterface = () => {
     if (oldInterface != "/SetBook") {
-      router.push("/");
+      router.push("/home");
     } else {
       router.push(oldInterface);
     }

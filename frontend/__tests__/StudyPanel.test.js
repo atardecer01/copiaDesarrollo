@@ -25,15 +25,18 @@ describe('StudyPanel component', () => {
   });
 
 
-  test("llama a console.log al hacer clic en el botón 'Cerrar Sesión'", () => {
-    console.log = jest.fn(); // Mock console.log
+  test("se cierra sesión al hacer clic en el botón 'Cerrar Sesión'", () => {
+    const mockRouterPush = jest.fn();
+    useRouter.mockReturnValue({
+      push: mockRouterPush,
+    });
 
     const { getByText } = render(<StudyPanel />);
     const closeButton = getByText("Cerrar Sesion");
 
     fireEvent.click(closeButton);
 
-    expect(console.log).toHaveBeenCalledWith("sesion Cerrada");
+    expect(mockRouterPush).toHaveBeenCalledWith('/');
   });
 
   test('renders StudyPanel component', () => {
@@ -68,7 +71,7 @@ describe('StudyPanel component', () => {
     const suspenderButton = screen.getByText('Suspender Sesión');
     fireEvent.click(suspenderButton);
 
-    expect(mockRouterPush).toHaveBeenCalledWith('/');
+    expect(mockRouterPush).toHaveBeenCalledWith('/home');
   });
 
 

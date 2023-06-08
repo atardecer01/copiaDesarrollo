@@ -5,7 +5,7 @@
 
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import LoginPage from "../src/app/login/page";
+import LoginPage from "../src/app/page";
 import axios from "axios";
 
 
