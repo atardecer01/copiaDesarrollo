@@ -11,6 +11,11 @@
         "src": "/(.*)",
         "dest": "/" 
       }
-    ]
+    ],
+    "env":
+    {
+        "MONGO_URI":"mongodb+srv://Lina:zMjtHiRpvIoOLIWC@cluster0.1ek00zj.mongodb.net/lawatty?retryWrites=true&w=majority",
+        "JWT_SECRET":"palabrasupersecretajeje" 
+    }
   }
   
