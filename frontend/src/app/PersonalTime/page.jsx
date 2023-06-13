@@ -1,8 +1,8 @@
 
     import React from "react";
     import ButtonBack from "../components/buttonBack";
-    import { useRouter } from "next/navigation";
-
+    import { useRouter } from "next/router";
+    
 export default function PTime({children,estado,cambioEstado}) {
     const router = useRouter();
     //ponerle de fondo la pestaña anterior de seleccionar tiempo
