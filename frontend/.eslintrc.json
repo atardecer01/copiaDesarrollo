@@ -1,5 +1,6 @@
 {
     "plugins": ["complexity"],
+    "parser": "babel-eslint",
     "rules": {
       "complexity": ["warn", 5]
     },
