@@ -8,7 +8,7 @@
       }
     ],
     
-      "@babel/preset-react",
-      "next/babel"
+      ["@babel/preset-react"],
+     [ "next/babel"]
   ]
 }

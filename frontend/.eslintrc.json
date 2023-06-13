@@ -1,11 +1,7 @@
 {
     "plugins": ["complexity"],
-    "parser": "babel-eslint",
-    "extends": "next",
     "rules": {
-      "complexity": ["warn", 5],
-      "react/no-unescaped-entities": "off",
-    "@next/next/no-page-custom-font": "off"
+      "complexity": ["warn", 5]
     },
     "parserOptions": {
       "ecmaVersion": 2021,
